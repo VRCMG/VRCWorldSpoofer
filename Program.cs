@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 
 namespace VRC
 {
@@ -8,6 +9,7 @@ namespace VRC
     {
         static Program()
         {
+            // Load embedded resources
             AppDomain.CurrentDomain.AssemblyResolve += (sender, e) =>
             {
                 string resourceName = new AssemblyName(e.Name).Name + ".dll";
@@ -22,19 +24,14 @@ namespace VRC
             };
         }
 
-        public static void Main()
-        {
-            Start();
-            Utils.KeepConsoleOpen();
-        }
-
-        private static void Start()
+        public static void Main(string[] args)
         {
             Utils.SetConsoleTitle();
             if (Utils.CheckProcess("vrchat"))
             {
                 new Spoofer().Start();
             }
+            Thread.Sleep(-1); // Keep console open
         }
     }
 }

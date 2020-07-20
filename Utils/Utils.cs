@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Microsoft.JScript;
+using System;
 using System.Diagnostics;
-using System.Threading;
+using System.Text;
 
 namespace VRC
 {
@@ -14,11 +15,6 @@ namespace VRC
         public static void SetConsoleTitle(string title = "")
         {
             Console.Title = $"VRChat World Spoofer by Moons • {title}";
-        }
-
-        public static void KeepConsoleOpen()
-        {
-            SpinWait.SpinUntil(() => false);
         }
 
         public static bool CheckProcess(string process)
@@ -81,6 +77,21 @@ namespace VRC
                 nonce += Random.Next(0, int.MaxValue).ToString("X8");
             }
             return nonce;
+        }
+
+        public static string Base64Encode(string text)
+        {
+            return System.Convert.ToBase64String(Encoding.UTF8.GetBytes(text));
+        }
+
+        public static string Base64Decode(string b64)
+        {
+            return Encoding.UTF8.GetString(System.Convert.FromBase64String(b64));
+        }
+
+        public static string Escape(string text)
+        {
+            return GlobalObject.escape(text);
         }
 
         public static string Timestamp

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="API\API.cs" />
     <Compile Include="API\AuthUserInfo.cs" />
+    <Compile Include="Config\Config.cs" />
     <Compile Include="Spoofer\Spoofer.cs" />
     <Compile Include="Utils\OutputLog.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
